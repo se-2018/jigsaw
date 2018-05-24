@@ -93,12 +93,12 @@ public abstract class Jigsaw {
         }
 
         int len = path.size();
-        if (!path.get(0).equals(destNode) ||
-            !path.get(len - 1).equals(startNode)) {
+        if (!destNode.equals(path.get(0)) ||
+            !startNode.equals(path.get(len - 1))) {
             return false;
         }
 
-        JigsawNode jNode = new JigsawNode(path.get(0));
+        JigsawNode jNode = new JigsawNode(destNode);
         for (int i = 1; i < len; i++) {
             JigsawNode prev = path.get(i);
             if (!prev.isValid()) {
@@ -399,7 +399,7 @@ public abstract class Jigsaw {
                 }
             }
         }
-
+        
         System.out.println("Jigsaw AStar Search Result:");
         System.out.println("Begin state:" + this.getBeginJNode().toString());
         System.out.println("End state:" + this.getEndJNode().toString());

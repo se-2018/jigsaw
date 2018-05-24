@@ -7,7 +7,7 @@ import java.io.IOException;
  * @author abe
  *
  */
-public class JigsawNode {
+public final class JigsawNode {
     // private static final int dimension = 3;  // 拼图的维数
     private static final int dimension = 5;     // 拼图的维数 5*5
     private int[] nodesState;                   // 拼图状态：第一位存储空白格的位置；其他各存储对应格子中的数值。
@@ -20,16 +20,17 @@ public class JigsawNode {
      * @param data - 节点状态，即一个N*N+1的一维数组（N为拼图维数）。第1位代表空白格所处位置，其余N*N位分别代表每一格中所放方块的数值（按照先行后列排序）。
      */
     public JigsawNode(int[] data) {
-        if(data.length == this.dimension*dimension+1){
+        if (data.length == this.dimension * this.dimension + 1) {
             this.nodesState = new int[data.length];
             for (int i = 0; i < this.nodesState.length; i++)
                 this.nodesState[i] = data[i];
             this.nodeDepth = 0;
             this.parent = null;
             this.estimatedValue = 0;
-        } else
+        } else {
             System.out.println("传入参数错误：当前的节点维数为3.请传入长度为" + (dimension * dimension + 1)
                     + "的节点状态数组，或者调整Jigsaw类中的节点维数dimension");
+        }
     }
 
     /**
@@ -159,6 +160,7 @@ public class JigsawNode {
      * 获取表示当前拼图状态的字符串文本，以一维数组形式显示
      * @return String 表示当前拼图状态的字符串文本（一维数组形式）
      */
+    @Override
     public String toString() {
         String str = new String();
         str += "{" + this.nodesState[0];
